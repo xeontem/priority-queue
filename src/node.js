@@ -49,14 +49,7 @@ swapWithParent() {
 		var right = this.parent.right;
 		var childOfLeft = this.left;
 
-		//updates children of node and parent node
-
-		 if(this.left.parent.parent.right){// this = left
-			this.right = right;//expect(left.right).to.equal(right);
-			this.left = root;//expect(left.left).to.equal(root);
-			this.parent.left = childOfLeft;//expect(root.left).to.equal(childOfLeft);
-			return;
-		}
+	
 		// updates parent.parent
 		if(!this.parent.parent){ 
 			if(this.parent.left == this){
@@ -83,7 +76,14 @@ swapWithParent() {
 		 		return;
 		 	}
 		}
-		
+			//updates children of node and parent node
+
+		 if(this.left.parent.parent.right){// this = left
+			this.right = right;//expect(left.right).to.equal(right);
+			this.left = root;//expect(left.left).to.equal(root);
+			this.parent.left = childOfLeft;//expect(root.left).to.equal(childOfLeft);
+			return;
+		}
 	 }
 	}
 }
