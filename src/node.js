@@ -41,49 +41,55 @@ class Node {
 
 swapWithParent() {
 		
-
+		
 	 if(this.parent){// if has'nt parent
-		var child = this;
-		var temp = this.right;
-		var root = this.parent;
-		var right = this.parent.right;
-		var childOfLeft = this.left;
-
-	
-		// updates parent.parent
-		if(!this.parent.parent){ 
-			if(this.parent.left == this){
-				this.parent.parent = this; 
-				return;// expect(parent.parent).to.equal(child);
-			}	
+	 	
+	 	var childOfLeft = this.left;
+	 	
+	 	// updates parent.parent
+		if(this.parent.right !== this && !this.left && !this.parent.parent){
+			this.parent.parent = this; 
+			return;// expect(parent.parent).to.equal(child);
 		}
 
-	 //updates child.parent
-		 if(this.parent.parent){
-			if(this.parent.parent.left == this.parent){
-				if(this.parent.left == this){
-					this.parent = this.parent.parent;//expect(child.parent).to.equal(parentOfParent);
-					return;
-				}
-			}
+		//----------------------
+
+		//updates child.parent
+		if(this.parent.parent && !this.parent.parent.right){
+			this.parent = this.parent.parent;//expect(child.parent).to.equal(parentOfParent);
+			return;
 		}
-
-
+		//----------------------
+	 
 		 //updates parent.child.parent  
-		 if(this.parent.right == this){
-			if(this.parent.left){
+		if(this.parent.right == this && this.parent.left){
 		 		this.parent.left.parent = this; //  expect(left.parent).to.equal(right);
 		 		return;
-		 	}
 		}
-			//updates children of node and parent node
+		
+		//----------------------
 
-		 if(this.left.parent.parent.right){// this = left
-			this.right = right;//expect(left.right).to.equal(right);
-			this.left = root;//expect(left.left).to.equal(root);
+		//updates children of node and parent node
+		if(this.left){// this = left
+			this.right = this.parent.right;//expect(left.right).to.equal(right);
+			this.left = this.parent;//expect(left.left).to.equal(root);
 			this.parent.left = childOfLeft;//expect(root.left).to.equal(childOfLeft);
 			return;
 		}
+		
+		//----------------------
+
+		//maintains correct state of parent.parent.left and parent.parent.right
+				
+		if (this.parent.parent.left.left == this){
+			this.parent.parent.left = this;//expect(root.left).to.equal(childOfLeft);
+			return;
+		}
+		 else if(this.parent.parent.right.left == this){
+			this.parent.parent.right = this;//expect(root.right).to.equal(childOfRight);
+			return;
+		}
+		//----------------------
 	 }
 	}
 }
