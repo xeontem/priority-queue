@@ -9,6 +9,15 @@
 ```sh
 npm test
 ```
+### Run tests in watch mode
+```sh
+npm test:watch
+```
+### Run only specified tests
+- just add ".only" to describe you want to test, e.g.:
+````
+describe.only('Node', () => {...
+````
 
 ### Run in browser
 ```sh
