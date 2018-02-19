@@ -1,6 +1,6 @@
 const Node = require('../src/node');
 
-describe.only('Node', () => {
+describe('Node', () => {
   describe('#constructor', () => {
     const node = new Node(42, 15);
 
