@@ -40,16 +40,22 @@ class Node {
 
   swapWithParent() {
     if (this.parent) {
-      [this.parent.data, this.data] = [this.data, this.parent.data];
-      [this.parent.priority, this.priority] = [this.priority, this.parent.priority];
-      [this.parent.left, this.left] = [this.left, this.parent.left];
-      [this.parent.right, this.right] = [this.right, this.parent.right];
+      if (this === this.parent.left) {
+        [this.parent.right, this.right] = [this.right, this.parent.right];
+        if (this.right) this.right.parent = this;
+        if (this.parent.right) this.parent.right.parent = this.parent;
+        [this.parent.left, this.left] = [this.left, this.parent];
+        if (this.parent.left) this.parent.left.parent = this.parent;
+      } else {
+        [this.parent.left, this.left] = [this.left, this.parent.left];
+        if (this.left) this.left.parent = this;
+        if (this.parent.left) this.parent.left.parent = this.parent;
+        [this.parent.right, this.right] = [this.right, this.parent];
+        if (this.parent.right) this.parent.right.parent = this.parent;
+      }
 
-      if (this.parent.right) this.parent.right.parent = this;
-      if (this.right) this.right.parent = this.parent;
-      if (this.parent.left) this.parent.left.parent = this;
-      if (this.left) this.left.parent = this.parent;
-
+      if (this.parent.parent && this.parent === this.parent.parent.left) this.parent.parent.left = this;
+      if (this.parent.parent && this.parent === this.parent.parent.right) this.parent.parent.right = this;
       [this.parent.parent, this.parent] = [this, this.parent.parent];
     }
     return this;
