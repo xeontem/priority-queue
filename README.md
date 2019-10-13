@@ -1,5 +1,7 @@
 ### Priority queue task
 
+:warning: DO NOT FORK AND SUBMIT PRS TO THIS REPO :warning:
+
 ### Prerequisites
 * Install [nodejs](https://nodejs.org/en/) (>= v6.2.0)
 * open bash in this folder
@@ -9,15 +11,6 @@
 ```sh
 npm test
 ```
-### Run tests in watch mode
-```sh
-npm test:watch
-```
-### Run only specified tests
-- just add ".only" to describe you want to test, e.g.:
-````
-describe.only('Node', () => {...
-````
 
 ### Run in browser
 ```sh
@@ -28,4 +21,4 @@ open http://localhost:8080
 
 ---
 
-© [xeontem](https://github.com/xeontem)
+© [R1ZZU](https://github.com/R1ZZU)
