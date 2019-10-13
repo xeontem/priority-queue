@@ -131,7 +131,7 @@ class MaxHeap {
 		if(node == this.root) {return;}
 
 		if(!node.parent){ 
-			this.root = node;
+			this.root = node
 			return;
 		}
 		else if(node.priority > node.parent.priority){
@@ -158,7 +158,6 @@ class MaxHeap {
 			}
 			
 			node.swapWithParent();
-			
 			this.shiftNodeUp(node);
 		}
 		return;
